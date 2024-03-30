@@ -1,0 +1,85 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.page-container {
+  height: 100vh;
+  width: 100vw;
+}
+
+.sidebar {
+  background-color: #212529;
+  position: absolute;
+  transition: transform 0.4s;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+.sidebar.hide {
+  transform: translateX(-100%);
+}
+.page-content {
+  transition: all 0.4s;
+}
+.sidebar.hide + .page-content {
+  padding-left: 30px !important;
+}
+
+.sidebar-header {
+  padding: 10px;
+}
+
+.resize-handle {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  cursor: ew-resize;
+  background-color: #ddd;
+}
+.resize-handle .btn {
+  transition: all 0.4s;
+}
+.resize-handle.rotate180 .btn {
+  transform: rotate(180deg);
+}
+
+.main-content {
+  padding: 20px;
+}
+
+.toggle-btn {
+  position: absolute;
+  right: -12px;
+  top: 15px;
+  font-size: 32px;
+  padding: 0;
+  line-height: 20px;
+  background: #fff;
+  border-radius: 50%;
+  filter: drop-shadow(2px 2px 4px rgb(0 0 0 / 0.4));
+  border: 0;
+  color: #212529;
+}
+
+.sidebar-links {
+  padding: 40px 0 20px;
+}
+
+.sidebar-links a {
+  padding: 5px 30px;
+  margin: 10px 0;
+  color: #fff;
+  display: block;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.sidebar-links a svg {
+  font-size: 26px;
+  margin-right: 10px;
+}
