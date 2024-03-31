@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [sidebarWidth, setSidebarWidth] = useState(200);
+  const [isHover, setIsHover] = useState(false);
   const [_isResizing, setIsResizing] = useState(false);
 
   const startResizing = useCallback(
@@ -43,10 +44,15 @@ function App() {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const hadleMouseEnter = useCallback(() => {
-    console.log('ehh');
+  const handleMouseEnter = useCallback(() => {
+    !isSidebarOpen && setIsHover(true);
     setIsSidebarOpen(true);
-  }, []);
+  }, [isSidebarOpen]);
+
+  const handleMouseOut = useCallback(() => {
+    isHover && setIsSidebarOpen(!isSidebarOpen);
+    setIsHover(false);
+  }, [isHover, isSidebarOpen]);
 
   return (
     <div className='App'>
@@ -57,9 +63,8 @@ function App() {
             width: `${sidebarWidth}px`,
             transform: `translateX(${!isSidebarOpen ? `-${sidebarWidth - 30}px` : '0'})`,
           }}
-          onMouseEnter={hadleMouseEnter}
         >
-          <div className='sidebar-links'>
+          <div className='sidebar-links' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseOut}>
             <Link to='/about'>
               <FaHome />
               Home
